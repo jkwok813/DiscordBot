@@ -10,7 +10,7 @@ GUILDID = config.GUILDID
 class playtest(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        print(f"playtest initialized")
+        # print(f"playtest initialized")
     #Command to send a message in the welcome channel
     @commands.Cog.listener()
     async def on_member_join(self, member: nextcord.Member):
@@ -73,7 +73,7 @@ class playtest(commands.Cog):
         if before.nick != after.nick:
             print(f"{after.name} changed their nickname from {before.nick} to {after.nick}")
 
-    print(f"Listeners loaded")
+    # print(f"Listeners loaded")
 
     #Register a slash command - Takes in an Interaction object and uses interaction.send to send back "Hello!"
     @nextcord.slash_command(description="My first slash command", guild_ids=[GUILDID])

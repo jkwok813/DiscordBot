@@ -1,5 +1,5 @@
 #Allows you to test commands in specified server - can be found via right clicking server title --> Copy Server ID
 GUILDID = 867286242723233802           
-print(f"GUILDID is set to: {GUILDID}")
+#print(f"GUILDID is set to: {GUILDID}")
 pokehelp = {"deoxys": "deoxys-normal", "shaymin": "shaymin-land", "basculin": "basculin-red-striped", "basculegion": "basculegion-male", "darmanitan": "darminitan-standard", "darmanitan-galar": "darmanitan-galar-standard", "tornadus": "tornadus-incarnate", "thundurus" : "thundurus-incarnate", "landorus": "landorus-incarnate", "enamorus": "enamorus-incarnate", "keldeo": "keldeo-ordinary", "meloetta": "meloetta-aria", "meowstic": "meowstic-male", "aegislash": "aegislash-shield", "pumpkaboo": "pumpkaboo-small", "zygarde": "zygarde-10", "oricorio": "oricorio-baile", "lycanroc": "lycanroc-midday", "wishiwashi": "wishiwashi-solo", "minior": "minior-meteor", "mimikyu": "mimikyu-disguised", "toxtricity": "toxtricity-amped", "eiscue": "eiscue-ice", "indeedee": "indeedee-male", "morpeko": "morpeko-full-belly", "urshifu": "urshifu-single-strike", "maushold":"maushold-family-of-four", "squawkabilly": "squawkabilly-green-plumage", "palafin": "palafin-zero", "tatsugiri":"tatsugiri-curly", "dudunsparce":"dudunsparce-two-segment", }
-print("helper dic added")
+#print("helper dic added")

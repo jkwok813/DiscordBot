@@ -21,7 +21,7 @@ def pokeCheck(pokemon):
 class poke(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        print(f"poke initialized")
+        #print(f"poke initialized")
 
     #Returns a Pokemon's BST
     @nextcord.slash_command(description="Returns a Pokemon's total bst", guild_ids=[GUILDID])
