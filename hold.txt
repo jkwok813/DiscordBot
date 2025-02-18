@@ -1,0 +1,85 @@
+#Command to send a message in the welcome channel
+    @bot.event
+    async def on_member_join(member: nextcord.Member):
+        print(f"Member joined {member.name}")
+        # Access the guild the member joined
+        guild = member.guild
+        print(f"{member.name} joined {guild.name}")
+        
+        # Example: Send a welcome message in a specific channel
+        welcome_channel = nextcord.utils.get(guild.text_channels, name="welcome")
+        if welcome_channel:
+            await welcome_channel.send(f"Welcome to the server, {member.mention}!")
+
+    @bot.event
+    async def on_member_remove(member: nextcord.Member):
+        print(f"Member left {member.name}")
+        # Access the guild the member joined
+        guild = member.guild
+        print(f"{member.name} joined {guild.name}")
+        
+        # Example: Send a welcome message in a specific channel
+        welcome_channel = nextcord.utils.get(guild.text_channels, name="welcome")
+        if welcome_channel:
+            await welcome_channel.send(f"See you later, {member.mention}!")
+
+    @bot.event
+    async def on_member_ban(guild: nextcord.Guild, user: nextcord.User):
+        print(f"{user.name} was banned from the server.")
+
+    @bot.event
+    async def on_member_unban(guild: nextcord.Guild, user: nextcord.User):
+        print(f"{user.name} was unbanned from the server.")
+
+    @bot.event
+    async def on_message(message):
+        if message.author == bot.user:  # Ignore messages sent by the bot itself
+            return
+        stripped_content = message.content.strip()  # Remove leading/trailing whitespace
+        print(f"Raw message: '{message.content}'")
+        print(f"Stripped message: '{stripped_content}'")
+        if not stripped_content:
+            print("Received an empty or whitespace-only message.")
+            return
+        print(f"Received message: {message.content}")
+        if message.content.startswith("!hello"):
+            await message.channel.send(f"Hello, {message.author.name}!")
+
+    @bot.event
+    async def on_member_update(before, after):
+        if before.nick != after.nick:
+            print(f"{after.name} changed their nickname from {before.nick} to {after.nick}")
+
+    #Register a slash command - Takes in an Interaction object and uses interaction.send to send back "Hello!"
+    @bot.slash_command(description="My first slash command", guild_ids=[GUILDID])
+    async def hello(interaction: nextcord.Interaction):
+        print(f'/hello command sent')
+        await interaction.send("Hello! ttt4fefef")
+
+    #Display Bot Permissions
+    @bot.slash_command(name="permissions", description="Show the bot's permissions in this channel.", guild_ids=[GUILDID])
+    async def permissions(interaction: nextcord.Interaction):
+        print(f"Members intent: {intents.members}")
+        # Get the bot's permissions in the channel where the command was invoked
+        bot_permissions = interaction.channel.permissions_for(interaction.guild.me)
+        
+        # Format permissions into a human-readable list
+        permissions_list = []
+        for perm, has_perm in bot_permissions:
+            permissions_list.append(f"{perm.replace('_', ' ').title()}: {'Yes' if has_perm else 'No'}")
+        
+        # Join all the permissions into a string
+        permissions_str = "\n".join(permissions_list)
+        
+        # Send the permissions in a message
+        await interaction.response.send_message(f"**Bot Permissions in this channel:**\n{permissions_str}")
+
+    #Kick User
+    @bot.slash_command(description="Kicks user", guild_ids=[GUILDID])
+    async def kick(interaction:nextcord.Interaction, member: nextcord.Member, reason=None):
+        print(f"{interaction.user} is attempting to kick {member}")
+        if interaction.user.guild_permissions.kick_members:
+            await member.kick(reason=reason)
+            await interaction.response.send_message("kicked")
+        else:
+            await interaction.response.send_message("No perms")

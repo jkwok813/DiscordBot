@@ -1,0 +1,2 @@
+#Tells Github not to push these files -
+.env
